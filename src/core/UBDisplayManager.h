@@ -131,6 +131,7 @@ class UBDisplayManager : public QObject
     private:
 
         void initScreenIndexes();
+        QScreen* cursorOrStartupScreen() const;
 
         QList<UBBlackoutWidget*> mBlackoutWidgets;
         QList<Ui::BlackoutWidget*> mBlackoutUiList;
