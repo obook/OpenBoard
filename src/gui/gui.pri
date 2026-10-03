@@ -102,3 +102,12 @@ linux-g++:SOURCES += src/gui/UBKeyboardPalette_linux.cpp
 linux-g++-32:SOURCES += src/gui/UBKeyboardPalette_linux.cpp
 linux-g++-64:SOURCES += src/gui/UBKeyboardPalette_linux.cpp
 
+HEADERS += src/gui/shapes/UBAbstractSubPalette.h \
+    src/gui/shapes/UBShapesPalette.h \
+    src/gui/shapes/UBStylePalette.h \
+    src/gui/shapes/UBToolbarExtensionPalette.h
+
+SOURCES += src/gui/shapes/UBAbstractSubPalette.cpp \
+    src/gui/shapes/UBShapesPalette.cpp \
+    src/gui/shapes/UBStylePalette.cpp \
+    src/gui/shapes/UBToolbarExtensionPalette.cpp

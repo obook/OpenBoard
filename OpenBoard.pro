@@ -78,7 +78,8 @@ FORMS += resources/forms/mainWindow.ui \
    resources/forms/trapFlash.ui \
    resources/forms/youTubePublishingDialog.ui \
    resources/forms/capturePublishing.ui \
-   resources/forms/intranetPodcastPublishingDialog.ui
+   resources/forms/intranetPodcastPublishingDialog.ui \
+   resources/forms/shapeActions.ui
 
 UB_ETC.files = resources/etc
 UB_I18N.files = resources/i18n/*.qm
@@ -485,7 +486,8 @@ linux-g++* {
     system(echo "$$SVN_VERSION" > $$BUILD_DIR/svnversion)
 }
 
-RESOURCES += resources/OpenBoard.qrc
+RESOURCES += resources/OpenBoard.qrc \
+    resources/shapes.qrc
 
 # When adding a translation here, also add it in the macx part
 TRANSLATIONS = resources/i18n/OpenBoard_ar.ts \

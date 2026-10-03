@@ -37,3 +37,7 @@ SOURCES      += src/adaptors/UBExportAdaptor.cpp\
     $$PWD/UBExportCFF.cpp \
     $$PWD/UBImportCFF.cpp \
     $$PWD/UBCFFSubsetAdaptor.cpp
+
+HEADERS += src/adaptors/UBSvgShapeAdaptor.h
+
+SOURCES += src/adaptors/UBSvgShapeAdaptor.cpp
