@@ -1,3 +1,6 @@
+> Ce dépôt est un fork d'OpenBoard-org/OpenBoard. Ses branches, ses builds de
+> test et les étapes prévues sont décrits dans la [feuille de route](ROADMAP.md).
+
 ![GitHub Repo stars](https://img.shields.io/github/stars/OpenBoard-org/openboard)
 ![GitHub Repo forks](https://img.shields.io/github/forks/OpenBoard-org/openboard)
 # OpenBoard
