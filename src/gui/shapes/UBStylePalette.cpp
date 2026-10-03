@@ -569,7 +569,7 @@ void UBStylePalette::colorContextChanged()
 
 void UBStylePalette::applyStyle(const UBItemStyle& style)
 {
-    if (style != mStyle && (mMode == UBStylusTool::Selector || mMode == UBStylusTool::Drawing))
+    if (!(style == mStyle) && (mMode == UBStylusTool::Selector || mMode == UBStylusTool::Drawing))
     {
         mStyle = style;
         emit styleChanged(mStyle);
