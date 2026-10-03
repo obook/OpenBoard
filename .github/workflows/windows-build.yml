@@ -1,0 +1,73 @@
+name: Windows build
+
+on:
+  push:
+    branches: [shapes-1.7]
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-2022
+    steps:
+      - name: Check out OpenBoard
+        uses: actions/checkout@v4
+        with:
+          path: OpenBoard
+
+      # OpenBoard.pro expects the third-party libraries next to the sources
+      - name: Check out third-party libraries
+        uses: actions/checkout@v4
+        with:
+          repository: OpenBoard-org/OpenBoard-ThirdParty
+          ref: dev
+          path: OpenBoard-ThirdParty
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          arch: win64_msvc2022_64
+          modules: qtwebengine qtwebchannel qtpositioning qtmultimedia qt5compat qtactiveqt
+          cache: true
+
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Build QuaZip
+        shell: cmd
+        working-directory: OpenBoard-ThirdParty/quazip
+        run: |
+          qmake quazip.pro "QT+=core5compat" || exit /b 1
+          nmake release || exit /b 1
+
+      - name: Build OpenBoard
+        shell: cmd
+        working-directory: OpenBoard
+        run: |
+          for %%f in (resources\i18n\*.ts) do lrelease -silent %%f || exit /b 1
+          qmake OpenBoard.pro || exit /b 1
+          nmake release-install || exit /b 1
+
+      - name: Deploy Qt and third-party libraries
+        shell: cmd
+        working-directory: OpenBoard
+        run: |
+          set PRODUCT=build\win32\release\product
+          set THIRDPARTY=..\OpenBoard-ThirdParty
+          windeployqt --release %PRODUCT%\OpenBoard.exe || exit /b 1
+          xcopy /y %THIRDPARTY%\poppler\bin\*.dll %PRODUCT%\ || exit /b 1
+          xcopy /y %THIRDPARTY%\zlib\1.2.11\bin\zlib.dll %PRODUCT%\ || exit /b 1
+          xcopy /y %THIRDPARTY%\openssl\openssl-3.0.15-win64\bin\*.dll %PRODUCT%\ || exit /b 1
+          xcopy /y "%VCToolsRedistDir%x64\Microsoft.VC143.CRT\*.dll" %PRODUCT%\ || exit /b 1
+          xcopy /y resources\windows\xpdfrc %PRODUCT%\ || exit /b 1
+          xcopy /s /i /y resources\fonts %PRODUCT%\fonts || exit /b 1
+          xcopy /s /i /y resources\customizations %PRODUCT%\customizations || exit /b 1
+          xcopy /s /i /y resources\startupHints %PRODUCT%\startupHints || exit /b 1
+
+      - name: Upload the portable build
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenBoard-windows-x64
+          path: OpenBoard/build/win32/release/product
