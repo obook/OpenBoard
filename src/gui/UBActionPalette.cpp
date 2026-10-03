@@ -252,10 +252,16 @@ void UBActionPalette::groupActions()
             action->setProperty("id", i);
             mActionGroup->addAction(action);
             ++i;
+
+            // only signal the palette's own actions: a sub-palette adds its actions to this group too
+            connect(action, &QAction::triggered, this, [this,action](bool checked){
+                if (checked)
+                {
+                    emit buttonGroupClicked(action);
+                }
+            });
         }
     }
-
-    connect(mActionGroup, SIGNAL(triggered(QAction*)), this, SIGNAL(buttonGroupClicked(QAction*)));
 }
 
 
