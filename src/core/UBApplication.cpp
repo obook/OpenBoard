@@ -148,6 +148,9 @@ UBApplication::UBApplication(const QString &id, int &argc, char **argv) : Single
 
     setStyle("fusion");
 
+    // the style sheet only defines light colors: do not inherit the palette of a dark desktop theme
+    setPalette(QPalette(QColor(0xef, 0xef, 0xef)));
+
     QString css = UBFileSystemUtils::readTextFile(UBPlatformUtils::applicationEtcDirectory() + "/"+ qApp->applicationName()+".css");
     if (css.length() > 0)
         setStyleSheet(css);
