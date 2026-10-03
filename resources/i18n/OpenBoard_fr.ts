@@ -1352,6 +1352,170 @@ Voulez-vous continuer quand-même ?   </translation>
     </message>
 </context>
 <context>
+    <name>ShapeActions</name>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="23"/>
+        <source>Ellipse</source>
+        <translation>Ellipse</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="26"/>
+        <source>Draw an Ellipse</source>
+        <translation>Tracer une ellipse</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="39"/>
+        <source>Polygon</source>
+        <translation>Polygone</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="42"/>
+        <source>Draw a Polygon</source>
+        <translation>Tracer un polygone</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="58"/>
+        <location filename="../forms/shapeActions.ui" line="61"/>
+        <location filename="../forms/shapeActions.ui" line="64"/>
+        <source>Drawing</source>
+        <translation>Dessin</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="77"/>
+        <source>Circle</source>
+        <translation>Cercle</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="80"/>
+        <source>Draw a Circle</source>
+        <translation>Tracer un cercle</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="93"/>
+        <source>Rectangle</source>
+        <translation>Rectangle</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="96"/>
+        <source>Draw a Rectangle</source>
+        <translation>Tracer un rectangle</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="109"/>
+        <source>Square</source>
+        <translation>Carré</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="112"/>
+        <source>Draw a Square</source>
+        <translation>Tracer un carré</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="128"/>
+        <source>Freehand Drawing</source>
+        <translation>Dessin à main levée</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="131"/>
+        <source>Freehand drawing</source>
+        <translation>Dessin à main levée</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="144"/>
+        <source>Line</source>
+        <translation>Trait</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="147"/>
+        <source>Draw Lines</source>
+        <translation>Tracer une ligne droite</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="160"/>
+        <source>Regular Shapes</source>
+        <translation>Polygones réguliers</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="163"/>
+        <source>Draw a regular shape</source>
+        <translation>Tracer un polygone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="176"/>
+        <source>Regular Triangle</source>
+        <translation>Triangle équilatéral</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="179"/>
+        <source>Draw a regular triangle</source>
+        <translation>Tracer un triangle équilatéral</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="192"/>
+        <source>Regular Square</source>
+        <translation>Carré</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="195"/>
+        <source>Draw a regular square</source>
+        <translation>Tracer un carré</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="208"/>
+        <source>Regular Pentagon</source>
+        <translation>Pentagone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="211"/>
+        <source>Draw a regular pentagon</source>
+        <translation>Tracer un pentagone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="224"/>
+        <source>Regular Hexagon</source>
+        <translation>Hexagone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="227"/>
+        <source>Draw a regular hexagon</source>
+        <translation>Tracer un hexagone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="240"/>
+        <source>Regular Heptagon</source>
+        <translation>Heptagone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="243"/>
+        <source>Draw a regular heptagon</source>
+        <translation>Tracer un heptagone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="256"/>
+        <source>Regular Octogon</source>
+        <translation>Octogone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="259"/>
+        <source>Draw a regular octogon</source>
+        <translation>Tracer un octogone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="271"/>
+        <location filename="../forms/shapeActions.ui" line="286"/>
+        <location filename="../forms/shapeActions.ui" line="301"/>
+        <source>Stroke Thickness</source>
+        <translation>Épaisseur du trait</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="274"/>
+        <location filename="../forms/shapeActions.ui" line="289"/>
+        <location filename="../forms/shapeActions.ui" line="304"/>
+        <source>Stroke thickness</source>
+        <translation>Épaisseur du trait</translation>
+    </message>
+</context>
+<context>
     <name>TabWidget</name>
     <message>
         <location filename="../../src/web/simplebrowser/tabwidget.cpp" line="123"/>
@@ -3261,6 +3425,45 @@ Voulez-vous ignorer les erreurs pour ce serveur ?</translation>
         <location filename="../../src/gui/UBStartupHintsPalette.cpp" line="67"/>
         <source>Visible next time</source>
         <translation>Visible la prochaine fois</translation>
+    </message>
+</context>
+<context>
+    <name>UBStylePalette</name>
+    <message>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="149"/>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="178"/>
+        <source>Marker Color</source>
+        <translation>Couleur du surligneur</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="153"/>
+        <source>Line Color</source>
+        <translation>Couleur du trait</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="172"/>
+        <source>Pen Color</source>
+        <translation>Couleur du stylet</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="184"/>
+        <source>Shape Color</source>
+        <translation>Couleur du contour</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="322"/>
+        <source>Line style</source>
+        <translation>Style du trait</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="370"/>
+        <source>Fill color</source>
+        <translation>Couleur de remplissage</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/shapes/UBStylePalette.cpp" line="399"/>
+        <source>Preview</source>
+        <translation>Aperçu</translation>
     </message>
 </context>
 <context>
