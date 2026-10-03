@@ -26,6 +26,7 @@
 #include "core/UBSettings.h"
 
 #include <QPainter>
+#include <QStyleOption>
 
 constexpr int topOverlap = 16;
 constexpr int bottomOverlap = 12;
@@ -65,15 +66,19 @@ void UBToolbarExtensionPalette::setSpan(QWidget* from, QWidget* to)
 
 void UBToolbarExtensionPalette::paintEvent(QPaintEvent* event)
 {
-    QWidget::paintEvent(event);
+    Q_UNUSED(event)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    QPen pen{palette().mid(), 3};
-    painter.setPen(pen);
+    // 1.7 has no application palette: take the background from the style sheet like
+    // the toolbar does, because the system palette may belong to a dark desktop theme
+    QStyleOption option;
+    option.initFrom(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &option, &painter, this);
 
-    painter.fillRect(QRect{0, 0, width(), height()}, palette().midlight());
+    QPen pen{QColor{0x88, 0x88, 0x88}, 3};
+    painter.setPen(pen);
 
     if (mToolbarAtTop)
     {
