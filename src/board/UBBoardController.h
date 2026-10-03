@@ -36,9 +36,11 @@
 #include <QHBoxLayout>
 #include <QUndoCommand>
 
-#include "core/UB.h"
 #include "core/UBApplicationController.h"
 #include "document/UBDocumentContainer.h"
+
+#include "core/UB.h"
+#include "domain/shapes/UBShapeFactory.h"
 
 class UBMainWindow;
 class UBApplication;
@@ -60,6 +62,7 @@ class UBGraphicsWidgetItem;
 class UBBoardPaletteManager;
 class UBItem;
 class UBGraphicsItem;
+class UBStylePalette;
 
 
 class UBBoardController : public UBDocumentContainer
@@ -170,6 +173,8 @@ class UBBoardController : public UBDocumentContainer
             return mPaletteManager;
         }
 
+        UBShapeFactory& shapeFactory();
+
         void notifyCache(bool visible);
         void notifyPageChanged();
         void displayMetaData(QMap<QString, QString> metadatas);
@@ -192,6 +197,8 @@ class UBBoardController : public UBDocumentContainer
         {
             return mInitialDocumentScene;
         }
+
+        UBStylePalette* stylePalette() const;
 
     public slots:
         void showDocumentsDialog();
@@ -323,8 +330,11 @@ class UBBoardController : public UBDocumentContainer
         QString mActionUngroupText;
         std::shared_ptr<UBGraphicsScene> mInitialDocumentScene;
         QList<std::shared_ptr<UBDocument>> mRecentDocuments;
+        UBStylePalette* mStylePalette{nullptr};
 
         QTimer *mAutosaveTimer;
+
+        UBShapeFactory mShapeFactory;
 
     private slots:
         void stylusToolDoubleClicked(int tool);

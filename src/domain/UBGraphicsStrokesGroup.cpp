@@ -31,6 +31,7 @@
 #include "UBGraphicsStroke.h"
 
 #include "domain/UBGraphicsPolygonItem.h"
+#include "domain/UBGraphicsScene.h"
 
 #include "core/memcheck.h"
 
@@ -62,58 +63,6 @@ void UBGraphicsStrokesGroup::setUuid(const QUuid &pUuid)
 {
     UBItem::setUuid(pUuid);
     setData(UBGraphicsItemData::ItemUuid, QVariant(pUuid)); //store item uuid inside the QGraphicsItem to fast operations with Items on the scene
-}
-
-void UBGraphicsStrokesGroup::setColor(const QColor &color, colorType pColorType)
-{
-    //TODO Implement common mechanism of managing groups, drop UBGraphicsStroke if it's obsolete
-    //Using casting for the moment
-    foreach (QGraphicsItem *item, childItems()) {
-        if (item->type() == UBGraphicsPolygonItem::Type) {
-            UBGraphicsPolygonItem *curPolygon = static_cast<UBGraphicsPolygonItem *>(item);
-
-            switch (pColorType) {
-            case currentColor :
-                curPolygon->setColor(color);
-                break;
-            case colorOnLightBackground :
-                 curPolygon->setColorOnLightBackground(color);
-                break;
-            case colorOnDarkBackground :
-                 curPolygon->setColorOnDarkBackground(color);
-                break;
-            }
-        }
-    }
-
-    if (mDebugText)
-        mDebugText->setBrush(QBrush(color));
-}
-
-QColor UBGraphicsStrokesGroup::color(colorType pColorType) const
-{
-    QColor result;
-
-    foreach (QGraphicsItem *item, childItems()) {
-        if (item->type() == UBGraphicsPolygonItem::Type) {
-            UBGraphicsPolygonItem *curPolygon = static_cast<UBGraphicsPolygonItem *>(item);
-
-            switch (pColorType) {
-            case currentColor :
-                result = curPolygon->color();
-                break;
-            case colorOnLightBackground :
-                result = curPolygon->colorOnLightBackground();
-                break;
-            case colorOnDarkBackground :
-                result = curPolygon->colorOnDarkBackground();
-                break;
-            }
-
-        }
-    }
-
-    return result;
 }
 
 void UBGraphicsStrokesGroup::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -214,6 +163,98 @@ void UBGraphicsStrokesGroup::copyItemParameters(UBItem *copy) const
     }
 }
 
+UBItemStyle UBGraphicsStrokesGroup::itemStyle() const
+{
+    UBItemStyle style;
+    style.setLineStyle(Qt::SolidLine);
+
+    for (const auto child : childItems())
+    {
+        const auto polygon = dynamic_cast<UBGraphicsPolygonItem*>(child);
+
+        if (polygon)
+        {
+            if (polygon->stroke() && polygon->stroke()->role() == UBGraphicsStroke::FILL)
+            {
+                style.setFillColor(polygon->colorOnLightBackground(), polygon->colorOnDarkBackground());
+            }
+            else
+            {
+                style.setLineColor(polygon->colorOnLightBackground(), polygon->colorOnDarkBackground());
+            }
+        }
+    }
+
+    return style;
+}
+
+void UBGraphicsStrokesGroup::applyItemStyle(const UBItemStyle& style, bool isDark)
+{
+    for (const auto child : childItems())
+    {
+        const auto polygon = dynamic_cast<UBGraphicsPolygonItem*>(child);
+
+        if (polygon)
+        {
+            if (polygon->stroke() && polygon->stroke()->role() == UBGraphicsStroke::FILL)
+            {
+                if (style.fillColor(isDark).isValid())
+                {
+                    polygon->setColorOnDarkBackground(style.fillColor(true));
+                    polygon->setColorOnLightBackground(style.fillColor(false));
+                    polygon->setColor(style.fillColor(isDark));
+                }
+            }
+            else
+            {
+                if (style.lineColor(isDark).isValid())
+                {
+                    polygon->setColorOnDarkBackground(style.lineColor(true));
+                    polygon->setColorOnLightBackground(style.lineColor(false));
+                    polygon->setColor(style.lineColor(isDark));
+                }
+            }
+        }
+    }
+}
+
+bool UBGraphicsStrokesGroup::isShape() const
+{
+    for (const auto child : childItems())
+    {
+        const auto polygon = dynamic_cast<UBGraphicsPolygonItem*>(child);
+
+        if (polygon && polygon->stroke())
+        {
+            const auto role = polygon->stroke()->role();
+
+            if (role == UBGraphicsStroke::OUTLINE || role == UBGraphicsStroke::FILL)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool UBGraphicsStrokesGroup::isMarker() const
+{
+    const auto strokes = childItems();
+
+    if (!strokes.isEmpty())
+    {
+        const auto polygon = dynamic_cast<UBGraphicsPolygonItem*>(strokes.first());
+
+        if (polygon && polygon->stroke())
+        {
+            return polygon->stroke()->role() == UBGraphicsStroke::MARKER;
+        }
+    }
+
+    return false;
+}
+
 void UBGraphicsStrokesGroup::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     // Never draw the rubber band, we draw our custom selection with the DelegateFrame
@@ -244,6 +285,12 @@ QVariant UBGraphicsStrokesGroup::itemChange(GraphicsItemChange change, const QVa
             }
             mDebugText->setText(QString("Z: %1").arg(newZ));
         }
+    }
+
+    if (change == GraphicsItemChange::ItemSelectedHasChanged)
+    {
+        auto ubScene = dynamic_cast<UBGraphicsScene*>(QGraphicsItem::scene());
+        ubScene->styledItemSelectionChanged(this, value.toBool());
     }
 
     QVariant newValue = Delegate()->itemChange(change, value);

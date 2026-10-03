@@ -45,14 +45,22 @@ target_sources(${PROJECT_NAME} PRIVATE
     UBGraphicsWidgetItemDelegate.h
     UBItem.cpp
     UBItem.h
+    UBItemStyle.cpp
+    UBItemStyle.h
+    UBItemStyleUndoCommand.cpp
+    UBItemStyleUndoCommand.h
     UBPageSizeUndoCommand.cpp
     UBPageSizeUndoCommand.h
     UBResizableGraphicsItem.cpp
     UBResizableGraphicsItem.h
     UBSelectionFrame.cpp
     UBSelectionFrame.h
+    UBStyledItem.cpp
+    UBStyledItem.h
     UBUndoCommand.cpp
     UBUndoCommand.h
     UBWebEngineView.cpp
     UBWebEngineView.h
 )
+
+add_subdirectory(shapes)

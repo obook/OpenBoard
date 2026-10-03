@@ -100,3 +100,5 @@ if(CMAKE_SYSTEM_NAME STREQUAL Linux)
         UBKeyboardPalette_linux.cpp
     )
 endif()
+
+add_subdirectory(shapes)

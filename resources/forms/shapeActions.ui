@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ShapeActions</class>
+ <widget class="QWidget" name="ShapeActions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>100</width>
+    <height>30</height>
+   </rect>
+  </property>
+  <action name="actionEllipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/ellipse.png</normaloff>
+     <normalon>:/images/drawingPalette/ellipseON.png</normalon>:/images/drawingPalette/ellipse.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ellipse</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw an Ellipse</string>
+   </property>
+  </action>
+  <action name="actionPolygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/free-shape.png</normaloff>
+     <normalon>:/images/drawingPalette/free-shapeOn.png</normalon>:/images/drawingPalette/free-shape.png</iconset>
+   </property>
+   <property name="text">
+    <string>Polygon</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a Polygon</string>
+   </property>
+  </action>
+  <action name="actionDrawing">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/paint-palette.png</normaloff>
+     <normalon>:/images/drawingPalette/paint-paletteOn.png</normalon>:/images/drawingPalette/paint-palette.png</iconset>
+   </property>
+   <property name="text">
+    <string>Drawing</string>
+   </property>
+   <property name="iconText">
+    <string>Drawing</string>
+   </property>
+   <property name="toolTip">
+    <string>Drawing</string>
+   </property>
+  </action>
+  <action name="actionCircle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/circle.png</normaloff>
+     <normalon>:/images/drawingPalette/circleON.png</normalon>:/images/drawingPalette/circle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Circle</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a Circle</string>
+   </property>
+  </action>
+  <action name="actionRectangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/rectangle.png</normaloff>
+     <normalon>:/images/drawingPalette/rectangleON.png</normalon>:/images/drawingPalette/rectangle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rectangle</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a Rectangle</string>
+   </property>
+  </action>
+  <action name="actionSquare">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/square.png</normaloff>
+     <normalon>:/images/drawingPalette/squareON.png</normalon>:/images/drawingPalette/square.png</iconset>
+   </property>
+   <property name="text">
+    <string>Square</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a Square</string>
+   </property>
+  </action>
+  <action name="actionSmartPen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/freeHand.png</normaloff>
+     <normalon>:/images/drawingPalette/freeHandOn.png</normalon>:/images/drawingPalette/freeHand.png</iconset>
+   </property>
+   <property name="text">
+    <string>Freehand Drawing</string>
+   </property>
+   <property name="toolTip">
+    <string>Freehand drawing</string>
+   </property>
+  </action>
+  <action name="actionSmartLine">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../OpenBoard.qrc">
+     <normaloff>:/images/stylusPalette/line.png</normaloff>
+     <normalon>:/images/stylusPalette/lineOn.png</normalon>:/images/stylusPalette/line.png</iconset>
+   </property>
+   <property name="text">
+    <string>Line</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw Lines</string>
+   </property>
+  </action>
+  <action name="actionRegularShapes">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/triangle.png</normaloff>
+     <normalon>:/images/drawingPalette/triangleON.png</normalon>:/images/drawingPalette/triangle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Regular Shapes</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a regular shape</string>
+   </property>
+  </action>
+  <action name="actionRegularTriangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/triangle.png</normaloff>
+     <normalon>:/images/drawingPalette/triangleON.png</normalon>:/images/drawingPalette/triangle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Regular Triangle</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a regular triangle</string>
+   </property>
+  </action>
+  <action name="actionRegularSquare">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/square.png</normaloff>
+     <normalon>:/images/drawingPalette/squareON.png</normalon>:/images/drawingPalette/square.png</iconset>
+   </property>
+   <property name="text">
+    <string>Regular Square</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a regular square</string>
+   </property>
+  </action>
+  <action name="actionRegularPentagone">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/Penta.png</normaloff>
+     <normalon>:/images/drawingPalette/PentaON.png</normalon>:/images/drawingPalette/Penta.png</iconset>
+   </property>
+   <property name="text">
+    <string>Regular Pentagon</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a regular pentagon</string>
+   </property>
+  </action>
+  <action name="actionRegularHexagone">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/hexa.png</normaloff>
+     <normalon>:/images/drawingPalette/hexaON.png</normalon>:/images/drawingPalette/hexa.png</iconset>
+   </property>
+   <property name="text">
+    <string>Regular Hexagon</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a regular hexagon</string>
+   </property>
+  </action>
+  <action name="actionRegularHeptagone">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/hepta.png</normaloff>
+     <normalon>:/images/drawingPalette/heptaON.png</normalon>:/images/drawingPalette/hepta.png</iconset>
+   </property>
+   <property name="text">
+    <string>Regular Heptagon</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a regular heptagon</string>
+   </property>
+  </action>
+  <action name="actionRegularOctogone">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../shapes.qrc">
+     <normaloff>:/images/drawingPalette/octo.png</normaloff>
+     <normalon>:/images/drawingPalette/octoON.png</normalon>:/images/drawingPalette/octo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Regular Octogon</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a regular octogon</string>
+   </property>
+  </action>
+  <action name="actionStrokePropertyThickness0">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../OpenBoard.qrc">
+     <normaloff>:/images/toolbar/smallPen.png</normaloff>:/images/toolbar/smallPen.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stroke Thickness</string>
+   </property>
+   <property name="toolTip">
+    <string>Stroke thickness</string>
+   </property>
+  </action>
+  <action name="actionStrokePropertyThickness1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../OpenBoard.qrc">
+     <normaloff>:/images/toolbar/mediumPen.png</normaloff>:/images/toolbar/mediumPen.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stroke Thickness</string>
+   </property>
+   <property name="toolTip">
+    <string>Stroke thickness</string>
+   </property>
+  </action>
+  <action name="actionStrokePropertyThickness2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../OpenBoard.qrc">
+     <normaloff>:/images/toolbar/largePen.png</normaloff>:/images/toolbar/largePen.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stroke Thickness</string>
+   </property>
+   <property name="toolTip">
+    <string>Stroke thickness</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../OpenBoard.qrc"/>
+  <include location="../shapes.qrc"/>
+ </resources>
+ <connections/>
+</ui>

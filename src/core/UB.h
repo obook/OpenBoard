@@ -74,7 +74,8 @@ struct UBStylusTool
         Pointer,
         Line,
         Text,
-        Capture
+        Capture,
+        Drawing
     };
 };
 
@@ -174,8 +175,11 @@ struct UBGraphicsItemType
         groupContainerType,                             //65554
         ToolWidgetItemType,                             //65555
         GraphicsWidgetItemType,                         //65556
-        UserTypesCount,                                 //65557
-        AxesItemType,                                   //65558
+        GraphicsShapeItemType,                          //65557
+        GraphicsPathItemType,                           //65558
+        GraphicsRegularPathItemType,                    //65559
+        UserTypesCount,                                 //65560
+        AxesItemType,                                   //65561
         SelectionFrameType                              // this line must be the last line in this enum because it is types counter.
     };
 };
@@ -219,7 +223,16 @@ struct UBUndoType
 {
     enum Enum
     {
-        undotype_UNKNOWN  = 0, undotype_DOCUMENT, undotype_GRAPHICITEMTRANSFORM, undotype_GRAPHICITEM, undotype_GRAPHICTEXTITEM, undotype_PAGESIZE, undotype_GRAPHICSGROUPITEM, undotype_GRAPHICITEMZVALUE
+        undotype_UNKNOWN  = 0,
+        undotype_DOCUMENT,
+        undotype_GRAPHICITEMTRANSFORM,
+        undotype_GRAPHICITEM,
+        undotype_GRAPHICTEXTITEM,
+        undotype_PAGESIZE,
+        undotype_GRAPHICSGROUPITEM,
+        undotype_GRAPHICITEMZVALUE,
+        undotype_SHAPESTYLE,
+        undotype_EDITSHAPE
     };
 };
 

@@ -37,18 +37,23 @@
 #include <QToolButton>
 #include <QActionGroup>
 
+#include "core/UB.h"
+
 class UBToolbarButtonGroup : public QWidget
 {
     Q_OBJECT;
 
     public:
-        UBToolbarButtonGroup(QToolBar *toolbar, const QList<QAction*> &actions = QList<QAction*>(), QString objectNameprefix = "");
+        UBToolbarButtonGroup(QToolBar *toolbar, const QList<QAction*> &actions = QList<QAction*>(), QString objectNameprefix = "", int selectableCount = -1);
         virtual ~UBToolbarButtonGroup();
 
         void setIcon(const QIcon &icon, int index);
         void setColor(const QColor &color, int index);
         int currentIndex() const;
         void setLabel(const QString& label);
+        void setSelectableCount(int count);
+        int selectableCount() const { return mSelectableCount; }
+        QList<QAction*> buttonActions() const;
 
     protected:
         void paintEvent(QPaintEvent *);
@@ -59,16 +64,17 @@ class UBToolbarButtonGroup : public QWidget
         QList<QAction*>      mActions;
         QList<QToolButton*>  mButtons;
         int                  mCurrentIndex;
+        int                  mSelectableCount;
         bool                 mDisplayLabel;
         QActionGroup*        mActionGroup;
 
     public slots:
         void setCurrentIndex(int index);
-        void colorPaletteChanged();
+        void colorPaletteChanged(UBStylusTool::Enum tool);
         void displayText(QVariant display);
 
     private slots:
-        void selected(QAction *action);
+        void setSelected(QAction *action);
 
     signals:
         void activated(int index);

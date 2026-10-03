@@ -31,12 +31,15 @@
 #include <QtGui>
 #include <optional>
 
+#include "domain/UBGraphicsItemUndoCommand.h"
+#include "domain/UBItemStyle.h"
 #include "frameworks/UBCoreGraphicsScene.h"
 
 #include "core/UB.h"
 
 #include "UBItem.h"
 
+class UBAbstractGraphicsItem;
 class UBGraphicsPixmapItem;
 class UBGraphicsSvgItem;
 class UBGraphicsPolygonItem;
@@ -53,11 +56,13 @@ class UBGraphicsCompass;
 class UBDocumentProxy;
 class UBGraphicsCurtainItem;
 class UBGraphicsStroke;
+class UBGraphicsStrokesGroup;
 class UBMagnifierParams;
 class UBMagnifier;
 class UBGraphicsCache;
 class UBGraphicsGroupContainerItem;
 class UBSelectionFrame;
+class UBStyledItem;
 class UBBoardView;
 
 const double PI = 4.0 * atan(1.0);
@@ -383,6 +388,10 @@ public slots:
 
         void controlViewportChanged();
 
+        void styledItemSelectionChanged(UBStyledItem* item, bool selected);
+        QSet<UBStyledItem*> selectedStyledItems() const;
+        void applyStyle(const UBItemStyle& style);
+
 signals:
         void zoomChanged(qreal zoomFactor);
 
@@ -397,6 +406,8 @@ signals:
         void addPolygonItemToCurrentStroke(UBGraphicsPolygonItem* polygonItem);
 
         void initPolygonItem(UBGraphicsPolygonItem*);
+
+        UBGraphicsStrokesGroup* shapeToStrokesGroup(UBAbstractGraphicsItem* shapeItem);
 
         void drawEraser(const QPointF& pEndPoint, bool pressed = true);
         void redrawEraser(bool pressed);
@@ -441,6 +452,7 @@ signals:
 
         QSet<QGraphicsItem*> mAddedItems;
         QSet<QGraphicsItem*> mRemovedItems;
+        UBGraphicsItemUndoCommand::GroupDataTable mGroupsMap;
 
         std::shared_ptr<UBDocumentProxy> mDocument;
 
@@ -493,6 +505,8 @@ signals:
         UBSelectionFrame *mSelectionFrame;
 
         UBGraphicsCache* mGraphicsCache;
+
+        QSet<UBStyledItem*> mSelectedStyledItems{};
 };
 
 

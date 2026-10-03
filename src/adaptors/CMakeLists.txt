@@ -29,6 +29,8 @@ target_sources(${PROJECT_NAME} PRIVATE
     UBImportPDF.h
     UBMetadataDcSubsetAdaptor.cpp
     UBMetadataDcSubsetAdaptor.h
+    UBSvgShapeAdaptor.cpp
+    UBSvgShapeAdaptor.h
     UBSvgSubsetAdaptor.cpp
     UBSvgSubsetAdaptor.h
     UBThumbnailAdaptor.cpp
