@@ -15,6 +15,36 @@ est construite pour KDE neon, Ubuntu 24.04 et Windows. Elle garde le
 format de document de la 1.7 : les documents ne sont pas convertis et
 restent lisibles par la 1.7.7 officielle.
 
+## Travail prévu le 5 octobre 2026
+
+Essais de la pré-release `v1.7.7-shapes.1` :
+
+- [ ] lancer le build Windows pour la première fois : démarrage, tracé et
+      modification de formes, textes en français, ouverture d'un document
+      existant ;
+- [ ] installer le `.deb` sur le poste KDE neon et travailler avec, sur de
+      vrais documents ;
+- [ ] vérifier la modif écrans sur un poste à plusieurs écrans, sous X11
+      et sous Wayland ;
+- [ ] transmettre le `.deb` Ubuntu 24.04 au collègue, avec un message à
+      jour : cette version ne convertit plus les documents ;
+- [ ] ouvrir avec la 1.7.7 officielle un document contenant des formes,
+      modifier la page, puis regarder si les formes ont survécu.
+
+Retours à l'amont :
+
+- [ ] rédiger et poster sur la PR 1541 le message qui regroupe les défauts
+      listés plus bas, avec les liens vers les commits de `shapes-1.7`.
+
+Rangement :
+
+- [ ] retirer du fork les tags `v1.7.4-shapes.1`, `.2` et `.3`, qui n'ont
+      plus de release ;
+- [ ] supprimer l'ancien dossier `divers/OpenBoard` et relancer les
+      sessions de travail depuis le nouvel emplacement du clone ;
+- [ ] supprimer ou reconstruire le dossier `build/` du clone, dont les
+      chemins compilés pointent vers l'ancien emplacement.
+
 ## Branches
 
 | Branche | Base | Contenu | Format des documents | État |
