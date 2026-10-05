@@ -118,7 +118,7 @@ class UBActionPalette : public UBFloatingPalette
         void actionChanged();
 
     private:
-        QPointer<UBAbstractSubPalette> mSubPalette;
+        QPointer<UBAbstractSubPalette> mSubPalette{};
         UBActionSubPaletteButton* mSubPaletteButton{nullptr};
 };
 
