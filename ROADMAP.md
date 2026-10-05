@@ -37,7 +37,7 @@ Retours à l'amont :
       [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545),
       demandée par l'auteur de la PR 1541 pour l'erreur de compilation
       Qt 6.4 qui vient de `dev` ;
-- [ ] rédiger et poster sur la PR 1541 le message qui regroupe les défauts
+- [x] rédiger et poster sur la PR 1541 le message qui regroupe les défauts
       restant à signaler, avec les liens vers les commits de `shapes-1.7`.
 
 Rangement :
@@ -109,7 +109,7 @@ répondu le 5 octobre :
 - palette de style mal placée quand la barre d'outils est en bas : il
   reprend notre correctif.
 
-Défauts restant à signaler :
+Défauts signalés le 5 octobre 2026, en attente de réponse :
 
 - plantage à la fermeture après un clic sans glisser avec un outil de
   forme : la forme est détruite sans être retirée du registre de la page ;
