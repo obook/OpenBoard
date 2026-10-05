@@ -1,6 +1,6 @@
 # Feuille de route
 
-État au 4 octobre 2026.
+État au 5 octobre 2026.
 
 Ce dépôt est un fork d'OpenBoard-org/OpenBoard. Il propose la version
 stable amont 1.7.7 avec deux ajouts : l'ouverture de la fenêtre principale
@@ -33,8 +33,12 @@ Essais de la pré-release `v1.7.7-shapes.1` :
 
 Retours à l'amont :
 
+- [x] ouvrir la PR amont
+      [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545),
+      demandée par l'auteur de la PR 1541 pour l'erreur de compilation
+      Qt 6.4 qui vient de `dev` ;
 - [ ] rédiger et poster sur la PR 1541 le message qui regroupe les défauts
-      listés plus bas, avec les liens vers les commits de `shapes-1.7`.
+      restant à signaler, avec les liens vers les commits de `shapes-1.7`.
 
 Rangement :
 
@@ -53,6 +57,7 @@ Rangement :
 | `projet` | `master` | documents du projet, dont ce fichier | 4.8.0 | branche par défaut du fork |
 | `shapes-1.7` | `master` | modif écrans, formes reportées de la PR 1541, correctifs, traductions françaises, compilation Windows | 4.8.0 | pré-release `v1.7.7-shapes.1` |
 | `feat-main-window-on-active-screen` | `dev` | modif écrans, PR amont [#1512](https://github.com/OpenBoard-org/OpenBoard/pull/1512) | 4.9.0 | en attente de revue amont |
+| `fix-qt64-colorscheme` | `dev` | compilation avec Qt 6.4, PR amont [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545) | 4.9.0 | en attente de revue amont |
 | `test-shapes` | `dev` | PR 1541 telle quelle, avec la modif écrans et nos correctifs | 4.9.0 | sans binaire, sert à signaler les défauts à l'amont |
 
 ## Contraintes
@@ -95,16 +100,23 @@ Ce report est à refaire quand la PR évolue.
 
 ### Retours à l'amont
 
-Défauts relevés dans la PR 1541, à signaler à son auteur :
+Défauts signalés le 3 octobre 2026 à l'auteur de la PR 1541, qui a
+répondu le 5 octobre :
 
-- quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04), dont une
-  vient de `dev` ;
+- quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04) : il en
+  corrige trois de son côté et celle qui vient de `dev` est dans la PR
+  [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545) ;
+- palette de style mal placée quand la barre d'outils est en bas : il
+  reprend notre correctif.
+
+Défauts restant à signaler :
+
 - plantage à la fermeture après un clic sans glisser avec un outil de
   forme : la forme est détruite sans être retirée du registre de la page ;
 - interfaces d'extension SVG sans destructeur virtuel ;
-- palette de style mal placée quand la barre d'outils est en bas ;
 - fichiers de la PR absents du projet qmake, donc pas de compilation
-  possible pour Windows ni macOS ;
+  possible pour Windows ni macOS (l'auteur l'a déjà dans sa liste de
+  tâches) ;
 - un `!=` sur `UBItemStyle` qui ne compile qu'en C++20 ;
 - chaînes anglaises à corriger avant traduction ("octogon", casse).
 
