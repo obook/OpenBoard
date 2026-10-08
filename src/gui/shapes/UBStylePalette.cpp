@@ -107,7 +107,7 @@ UBStylePalette::~UBStylePalette()
 
 UBItemStyle UBStylePalette::selectedStyle()
 {
-    return mStyle;
+    return mMode == UBStylusTool::Selector ? mCommonStyle : mStyle;
 }
 
 void UBStylePalette::updateSelection()
@@ -130,18 +130,18 @@ void UBStylePalette::updateSelection()
 
             if (!selectedItems.isEmpty())
             {
-                UBItemStyle commonStyle = (*selectedItems.begin())->itemStyle();
+                mCommonStyle = (*selectedItems.begin())->itemStyle();
 
                 for (const auto item : selectedItems)
                 {
-                    commonStyle = commonStyle.intersected(item->itemStyle());
+                    mCommonStyle = mCommonStyle.intersected(item->itemStyle());
                     selectionContainsShape |= item->isShape();
                     selectionOnlyContainsMarker &= item->isMarker();
                 }
 
                 mLineColorChoice->colorPaletteChanged(selectionOnlyContainsMarker ? UBStylusTool::Marker
                                                                                   : UBStylusTool::Pen);
-                updateChoice(commonStyle);
+                updateChoice(mCommonStyle);
 
                 if (selectionOnlyContainsMarker)
                 {
@@ -267,7 +267,7 @@ void UBStylePalette::init()
                     {
                         const auto color = sender()->property("color").value<QVariantList>();
 
-                        auto newStyle = mStyle;
+                        auto newStyle = selectedStyle();
                         newStyle.setLineColor(color.at(0).value<QColor>(), color.at(1).value<QColor>());
                         applyStyle(newStyle);
                     });
@@ -279,7 +279,7 @@ void UBStylePalette::init()
             [this]()
             {
                 const auto width = UBSettings::settings()->boardPenFineWidth->get().toDouble();
-                auto newStyle = mStyle;
+                auto newStyle = selectedStyle();
                 newStyle.setLineWidth(width);
                 applyStyle(newStyle);
             });
@@ -288,7 +288,7 @@ void UBStylePalette::init()
             [this]()
             {
                 const auto width = UBSettings::settings()->boardPenMediumWidth->get().toDouble();
-                auto newStyle = mStyle;
+                auto newStyle = selectedStyle();
                 newStyle.setLineWidth(width);
                 applyStyle(newStyle);
             });
@@ -297,7 +297,7 @@ void UBStylePalette::init()
             [this]()
             {
                 const auto width = UBSettings::settings()->boardPenStrongWidth->get().toDouble();
-                auto newStyle = mStyle;
+                auto newStyle = selectedStyle();
                 newStyle.setLineWidth(width);
                 applyStyle(newStyle);
             });
@@ -360,7 +360,7 @@ void UBStylePalette::init()
                 [this]()
                 {
                     auto color = sender()->property("color").value<QVariantList>();
-                    auto newStyle = mStyle;
+                    auto newStyle = selectedStyle();
                     newStyle.setFillColor(color.at(0).value<QColor>(), color.at(1).value<QColor>());
                     applyStyle(newStyle);
                 });
@@ -431,7 +431,7 @@ void UBStylePalette::setLineStyleIconAndConnect(UBToolbarButtonGroup* buttonGrou
     connect(buttonList.at(index)->defaultAction(), &QAction::triggered, this,
             [this, style]()
             {
-                auto newStyle = mStyle;
+                auto newStyle = selectedStyle();
                 newStyle.setLineStyle(style);
                 applyStyle(newStyle);
             });
@@ -503,7 +503,14 @@ QPixmap UBStylePalette::createPreview(const UBItemStyle& style) const
 
     const Qt::PenStyle penStyle =
         style.lineColor(isDark).isValid() && style.lineWidth() > 0 ? style.lineStyle() : Qt::NoPen;
-    const QPen pen{style.lineColor(isDark), style.lineWidth(), penStyle, Qt::RoundCap};
+    QPen pen{style.lineColor(isDark), style.lineWidth(), penStyle, Qt::RoundCap};
+
+    if (penStyle != Qt::SolidLine && penStyle != Qt::NoPen)
+    {
+        pen.setStyle(Qt::CustomDashLine);
+        pen.setDashPattern(UBShapeFactory::dashPattern(penStyle));
+    }
+
     painter.setPen(pen);
 
     if (style.fillColor(isDark).isValid())
@@ -569,23 +576,29 @@ void UBStylePalette::colorContextChanged()
 
 void UBStylePalette::applyStyle(const UBItemStyle& style)
 {
-    if (!(style == mStyle) && (mMode == UBStylusTool::Selector || mMode == UBStylusTool::Drawing))
+    if (!(style == selectedStyle()) && (mMode == UBStylusTool::Selector || mMode == UBStylusTool::Drawing))
     {
-        mStyle = style;
-        emit styleChanged(mStyle);
+        if (mMode == UBStylusTool::Selector)
+        {
+            mCommonStyle = style;
+        }
+        else
+        {
+            mStyle = style;
+        }
+
+        emit styleChanged(style);
     }
 }
 
 void UBStylePalette::saveStyle()
 {
-    mSavedStyle = mStyle;
+    mSavedStyle = selectedStyle();
     mSavedPreviewLabel->setPixmap(createPreview(mSavedStyle));
 }
 
 void UBStylePalette::recallStyle()
 {
-    mStyle = mSavedStyle;
     updateChoice(mSavedStyle);
-
-    emit styleChanged(mStyle);
+    applyStyle(mSavedStyle);
 }
