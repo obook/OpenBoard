@@ -1,6 +1,6 @@
 # Feuille de route
 
-État au 5 octobre 2026.
+État au 9 octobre 2026.
 
 Ce dépôt est un fork d'OpenBoard-org/OpenBoard. Il propose la version
 stable amont 1.7.7 avec deux ajouts : l'ouverture de la fenêtre principale
@@ -86,7 +86,11 @@ La PR 1541 est écrite pour `dev`. Son report sur la 1.7.7 a demandé :
 - une palette claire imposée à l'application, la 1.7 n'ayant de couleurs
   que pour un thème clair.
 
-Ce report est à refaire quand la PR évolue.
+Ce report est à refaire quand la PR évolue. `test-shapes` part du commit
+`647a9dd3` de la PR. Au 9 octobre 2026, la PR en est à `e1b5bbcb`, six
+commits plus loin, dont un renommage de fichiers (`342a32e2`) et une
+action unique pour les polygones réguliers (`4d129d51`). Ni `test-shapes`
+ni `shapes-1.7` ne les contiennent.
 
 ## Étapes
 
@@ -100,25 +104,30 @@ Ce report est à refaire quand la PR évolue.
 
 ### Retours à l'amont
 
-Défauts signalés le 3 octobre 2026 à l'auteur de la PR 1541, qui a
-répondu le 5 octobre :
+Défauts signalés les 3 et 5 octobre 2026 à l'auteur de la PR 1541. Il les
+a repris dans la PR entre le 6 et le 7 octobre. Aucun de ces correctifs
+n'est encore vérifié par une compilation ou un essai de notre côté.
 
-- quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04) : il en
-  corrige trois de son côté et celle qui vient de `dev` est dans la PR
-  [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545) ;
-- palette de style mal placée quand la barre d'outils est en bas : il
-  reprend notre correctif.
-
-Défauts signalés le 5 octobre 2026, en attente de réponse :
-
+- quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04) : trois sont
+  corrigées dans `466b5ebb`, celle qui vient de `dev` est dans la PR
+  [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545), sans
+  revue à ce jour ;
+- palette de style mal placée quand la barre d'outils est en bas :
+  corrigée dans `466b5ebb` ;
 - plantage à la fermeture après un clic sans glisser avec un outil de
-  forme : la forme est détruite sans être retirée du registre de la page ;
-- interfaces d'extension SVG sans destructeur virtuel ;
-- fichiers de la PR absents du projet qmake, donc pas de compilation
-  possible pour Windows ni macOS (l'auteur l'a déjà dans sa liste de
-  tâches) ;
-- un `!=` sur `UBItemStyle` qui ne compile qu'en C++20 ;
-- chaînes anglaises à corriger avant traduction ("octogon", casse).
+  forme : `466b5ebb` corrige une double destruction des formes créées
+  partiellement, à confirmer par un essai ;
+- interfaces d'extension SVG sans destructeur virtuel : corrigé dans
+  `466b5ebb` ;
+- fichiers de la PR absents du projet qmake : ajoutés dans `d6cc74fc` ;
+- un `!=` sur `UBItemStyle` qui ne compile qu'en C++20 : opérateur ajouté
+  dans `466b5ebb` ;
+- chaînes anglaises à corriger avant traduction : "octogon" a disparu
+  avec `4d129d51`, la casse des autres chaînes n'est pas vérifiée.
+
+Défaut signalé le 9 octobre 2026 par un autre testeur, sans réponse : sur
+une ligne brisée tracée avec l'outil polygone, les cercles des points de
+départ et d'arrivée peuvent rester affichés après l'édition.
 
 La question du redimensionnement des formes (poignées visibles seulement
 après un second clic) est mise de côté.
