@@ -1441,6 +1441,16 @@ Voulez-vous continuer quand-même ?   </translation>
         <translation>Tracer un polygone régulier</translation>
     </message>
     <message>
+        <location filename="../forms/shapeActions.ui" line="119"/>
+        <source>Regular Polygon</source>
+        <translation>Polygone régulier</translation>
+    </message>
+    <message>
+        <location filename="../forms/shapeActions.ui" line="122"/>
+        <source>Draw a regular polygon</source>
+        <translation>Tracer un polygone régulier</translation>
+    </message>
+    <message>
         <location filename="../forms/shapeActions.ui" line="176"/>
         <source>Regular Triangle</source>
         <translation>Triangle équilatéral</translation>
