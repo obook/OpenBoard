@@ -10,14 +10,14 @@ sur l'écran sous le curseur et l'outil de formes éditables de la PR amont
 ## Version proposée
 
 La pré-release
-[v1.7.7-shapes.1](https://github.com/obook/OpenBoard/releases/tag/v1.7.7-shapes.1)
+[v1.7.7-shapes.2](https://github.com/obook/OpenBoard/releases/tag/v1.7.7-shapes.2)
 est construite pour KDE neon, Ubuntu 24.04 et Windows. Elle garde le
 format de document de la 1.7 : les documents ne sont pas convertis et
 restent lisibles par la 1.7.7 officielle.
 
-## Travail prévu le 5 octobre 2026
+## Travail à faire
 
-Essais de la pré-release `v1.7.7-shapes.1` :
+Essais de la pré-release `v1.7.7-shapes.2` :
 
 - [ ] lancer le build Windows pour la première fois : démarrage, tracé et
       modification de formes, textes en français, ouverture d'un document
@@ -55,7 +55,7 @@ Rangement :
 |---|---|---|---|---|
 | `master` | amont | miroir de l'amont, 1.7.7 | 4.8.0 | jamais modifiée |
 | `projet` | `master` | documents du projet, dont ce fichier | 4.8.0 | branche par défaut du fork |
-| `shapes-1.7` | `master` | modif écrans, formes reportées de la PR 1541, correctifs, traductions françaises, compilation Windows | 4.8.0 | pré-release `v1.7.7-shapes.1` |
+| `shapes-1.7` | `master` | modif écrans, formes reportées de la PR 1541, correctifs, traductions françaises, compilation Windows | 4.8.0 | pré-release `v1.7.7-shapes.2` |
 | `feat-main-window-on-active-screen` | `dev` | modif écrans, PR amont [#1512](https://github.com/OpenBoard-org/OpenBoard/pull/1512) | 4.9.0 | en attente de revue amont |
 | `fix-qt64-colorscheme` | `dev` | compilation avec Qt 6.4, PR amont [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545) | 4.9.0 | en attente de revue amont |
 | `test-shapes` | `dev` | PR 1541 telle quelle, avec la modif écrans et nos correctifs | 4.9.0 | sans binaire, sert à signaler les défauts à l'amont |
@@ -84,16 +84,19 @@ La PR 1541 est écrite pour `dev`. Son report sur la 1.7.7 a demandé :
 - le signalement des clics de palette aligné sur celui de `dev`, sans
   quoi le sous-menu des formes se refermait ;
 - une palette claire imposée à l'application, la 1.7 n'ayant de couleurs
-  que pour un thème clair.
+  que pour un thème clair ;
+- une palette de style posée contre la barre d'outils et non à cheval
+  dessus, la barre de la 1.7 n'ayant pas de marge libre.
 
 Ce report est à refaire quand la PR évolue. Il a été refait le 10 octobre
-2026 jusqu'au commit `e1b5bbcb` de la PR : `shapes-1.7` contient ces
-commits, qui ne sont pas encore dans une pré-release. `test-shapes` est
-restée à `647a9dd3`, six commits plus tôt.
+2026 jusqu'au commit `e1b5bbcb` de la PR, publié dans `v1.7.7-shapes.2`.
+`test-shapes` est restée à `647a9dd3`, six commits plus tôt.
 
 Un push sur `shapes-1.7` lance deux workflows : le build Windows et les
 paquets `.deb` pour Ubuntu 24.04 et KDE neon. KDE neon se compile en
-C++20, son poppler ne passant pas en C++17.
+C++20, son poppler ne passant pas en C++17. Un tag `v*` relance les
+paquets `.deb` avec le numéro de version du tag. Le zip Windows d'une
+release vient de l'artefact du build de la branche, sur le même commit.
 
 ## Étapes
 
@@ -109,8 +112,10 @@ C++20, son poppler ne passant pas en C++17.
 
 Défauts signalés les 3 et 5 octobre 2026 à l'auteur de la PR 1541. Il les
 a repris dans la PR entre le 6 et le 7 octobre. Reportés sur
-`shapes-1.7`, ces correctifs compilent sous KDE neon et sous Ubuntu 24.04
-(Qt 6.4, C++17). Aucun n'est encore vérifié par un essai.
+`shapes-1.7`, ces correctifs compilent sous KDE neon, Ubuntu 24.04
+(Qt 6.4, C++17) et Windows. Essais du 10 octobre sous KDE neon : pas de
+plantage après un clic sans glisser, sélection et style des lignes
+corrects.
 
 - quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04) : trois sont
   corrigées dans `466b5ebb`, celle qui vient de `dev` est dans la PR
@@ -132,6 +137,15 @@ a repris dans la PR entre le 6 et le 7 octobre. Reportés sur
 Défaut signalé le 9 octobre 2026 par un autre testeur, sans réponse : sur
 une ligne brisée tracée avec l'outil polygone, les cercles des points de
 départ et d'arrivée peuvent rester affichés après l'édition.
+
+Défauts trouvés le 10 octobre 2026, à signaler sur la PR 1541 :
+
+- une forme dupliquée garde l'identifiant de l'original, corrigé dans
+  `shapes-1.7` (`53a8bdeb`) ;
+- `src/domain/domain.pri` : `HEADERS +=` et `SOURCES +=` sans barre de
+  continuation, à confirmer par un qmake sur la PR ;
+- palette de style plus large que le bloc des couleurs quand la palette
+  n'a que 5 couleurs, hypothèse non vérifiée sur `dev`.
 
 La question du redimensionnement des formes (poignées visibles seulement
 après un second clic) est mise de côté.
