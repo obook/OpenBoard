@@ -251,7 +251,6 @@ void UBAbstractGraphicsItem::copyItemParameters(UBItem* copy) const
     cp->setBrush(brush());
     cp->setPen(pen());
     cp->setItemStyle(itemStyle());
-    cp->setUuid(this->uuid());
     cp->setZValue(this->zValue());
 }
 
