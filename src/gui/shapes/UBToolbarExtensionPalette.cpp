@@ -28,8 +28,9 @@
 #include <QPainter>
 #include <QStyleOption>
 
-constexpr int topOverlap = 16;
-constexpr int bottomOverlap = 12;
+// no overlap on 1.7: the toolbar has no free margin, the palette would cover its labels and buttons
+constexpr int topOverlap = 0;
+constexpr int bottomOverlap = 0;
 
 UBToolbarExtensionPalette::UBToolbarExtensionPalette(QToolBar* toolBar, QWidget* parent)
     : QWidget{parent, Qt::WindowStaysOnTopHint}
