@@ -17,13 +17,14 @@ restent lisibles par la 1.7.7 officielle.
 
 ## Travail à faire
 
-Essais de la pré-release `v1.7.7-shapes.2` :
+Essais de la pré-release `v1.7.7-shapes.2`. Seul le `.deb` KDE neon a été
+lancé, le 10 octobre 2026 : formes, palette de style, duplication. Le
+`.deb` Ubuntu 24.04 et le zip Windows n'ont été lancés par personne.
 
 - [ ] lancer le build Windows pour la première fois : démarrage, tracé et
       modification de formes, textes en français, ouverture d'un document
       existant ;
-- [ ] installer le `.deb` sur le poste KDE neon et travailler avec, sur de
-      vrais documents ;
+- [ ] travailler avec le `.deb` KDE neon sur de vrais documents ;
 - [ ] vérifier la modif écrans sur un poste à plusieurs écrans, sous X11
       et sous Wayland ;
 - [ ] transmettre le `.deb` Ubuntu 24.04 au collègue, avec un message à
@@ -38,7 +39,12 @@ Retours à l'amont :
       demandée par l'auteur de la PR 1541 pour l'erreur de compilation
       Qt 6.4 qui vient de `dev` ;
 - [x] rédiger et poster sur la PR 1541 le message qui regroupe les défauts
-      restant à signaler, avec les liens vers les commits de `shapes-1.7`.
+      restant à signaler, avec les liens vers les commits de `shapes-1.7` ;
+- [ ] signaler sur la PR 1541 la forme dupliquée qui garde l'identifiant
+      de l'original, avec le lien vers `53a8bdeb` ;
+- [ ] vérifier sur la PR les deux autres défauts du 10 octobre (qmake,
+      largeur de la palette de style), puis les signaler s'ils se
+      confirment.
 
 Rangement :
 
@@ -125,7 +131,7 @@ corrects.
   corrigée dans `466b5ebb` ;
 - plantage à la fermeture après un clic sans glisser avec un outil de
   forme : `466b5ebb` corrige une double destruction des formes créées
-  partiellement, à confirmer par un essai ;
+  partiellement ;
 - interfaces d'extension SVG sans destructeur virtuel : corrigé dans
   `466b5ebb` ;
 - fichiers de la PR absents du projet qmake : ajoutés dans `d6cc74fc` ;
