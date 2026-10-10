@@ -1,6 +1,6 @@
 # Feuille de route
 
-État au 9 octobre 2026.
+État au 10 octobre 2026.
 
 Ce dépôt est un fork d'OpenBoard-org/OpenBoard. Il propose la version
 stable amont 1.7.7 avec deux ajouts : l'ouverture de la fenêtre principale
@@ -86,11 +86,14 @@ La PR 1541 est écrite pour `dev`. Son report sur la 1.7.7 a demandé :
 - une palette claire imposée à l'application, la 1.7 n'ayant de couleurs
   que pour un thème clair.
 
-Ce report est à refaire quand la PR évolue. `test-shapes` part du commit
-`647a9dd3` de la PR. Au 9 octobre 2026, la PR en est à `e1b5bbcb`, six
-commits plus loin, dont un renommage de fichiers (`342a32e2`) et une
-action unique pour les polygones réguliers (`4d129d51`). Ni `test-shapes`
-ni `shapes-1.7` ne les contiennent.
+Ce report est à refaire quand la PR évolue. Il a été refait le 10 octobre
+2026 jusqu'au commit `e1b5bbcb` de la PR : `shapes-1.7` contient ces
+commits, qui ne sont pas encore dans une pré-release. `test-shapes` est
+restée à `647a9dd3`, six commits plus tôt.
+
+Un push sur `shapes-1.7` lance deux workflows : le build Windows et les
+paquets `.deb` pour Ubuntu 24.04 et KDE neon. KDE neon se compile en
+C++20, son poppler ne passant pas en C++17.
 
 ## Étapes
 
@@ -105,8 +108,9 @@ ni `shapes-1.7` ne les contiennent.
 ### Retours à l'amont
 
 Défauts signalés les 3 et 5 octobre 2026 à l'auteur de la PR 1541. Il les
-a repris dans la PR entre le 6 et le 7 octobre. Aucun de ces correctifs
-n'est encore vérifié par une compilation ou un essai de notre côté.
+a repris dans la PR entre le 6 et le 7 octobre. Reportés sur
+`shapes-1.7`, ces correctifs compilent sous KDE neon et sous Ubuntu 24.04
+(Qt 6.4, C++17). Aucun n'est encore vérifié par un essai.
 
 - quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04) : trois sont
   corrigées dans `466b5ebb`, celle qui vient de `dev` est dans la PR
