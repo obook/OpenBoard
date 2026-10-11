@@ -1,6 +1,6 @@
 # Feuille de route
 
-État au 10 octobre 2026.
+État au 12 octobre 2026.
 
 Ce dépôt est un fork d'OpenBoard-org/OpenBoard. Il propose la version
 stable amont 1.7.7 avec deux ajouts : l'ouverture de la fenêtre principale
@@ -30,7 +30,10 @@ lancé, le 10 octobre 2026 : formes, palette de style, duplication. Le
 - [ ] transmettre le `.deb` Ubuntu 24.04 au collègue, avec un message à
       jour : cette version ne convertit plus les documents ;
 - [ ] ouvrir avec la 1.7.7 officielle un document contenant des formes,
-      modifier la page, puis regarder si les formes ont survécu.
+      modifier la page, puis regarder si les formes ont survécu ;
+- [x] refaire le report jusqu'à `0ed293f7`, fait le 12 octobre ;
+- [ ] essayer ce report à l'écran : icônes, polygone, relecture des
+      formes.
 
 Retours à l'amont :
 
@@ -40,15 +43,24 @@ Retours à l'amont :
       Qt 6.4 qui vient de `dev` ;
 - [x] rédiger et poster sur la PR 1541 le message qui regroupe les défauts
       restant à signaler, avec les liens vers les commits de `shapes-1.7` ;
-- [ ] signaler sur la PR 1541 la forme dupliquée qui garde l'identifiant
-      de l'original, avec le lien vers `53a8bdeb` ;
-- [ ] vérifier sur la PR les deux autres défauts du 10 octobre (qmake,
-      largeur de la palette de style), puis les signaler s'ils se
-      confirment.
+- [x] ouvrir un ticket pour la forme dupliquée qui garde l'identifiant
+      de l'original :
+      [letsfindaway#251](https://github.com/letsfindaway/OpenBoard/issues/251) ;
+- [x] vérifier sur la PR le défaut qmake du 10 octobre : présent à la
+      lecture de `334b4dd6` ;
+- [x] signaler le défaut qmake sur la PR 1541 ;
+- [ ] vérifier sur la PR la largeur de la palette de style, puis la
+      signaler si elle se confirme ;
+- [x] proposer à l'amont le correctif de la copie d'une page en fin de
+      document : PR
+      [#1548](https://github.com/OpenBoard-org/OpenBoard/pull/1548) ;
+- [x] proposer à l'amont le correctif du compteur d'identifiants de
+      page : PR
+      [#1549](https://github.com/OpenBoard-org/OpenBoard/pull/1549).
 
 Rangement :
 
-- [ ] retirer du fork les tags `v1.7.4-shapes.1`, `.2` et `.3`, qui n'ont
+- [x] retirer du fork les tags `v1.7.4-shapes.1`, `.2` et `.3`, qui n'ont
       plus de release ;
 - [ ] supprimer l'ancien dossier `divers/OpenBoard` et relancer les
       sessions de travail depuis le nouvel emplacement du clone ;
@@ -61,9 +73,11 @@ Rangement :
 |---|---|---|---|---|
 | `master` | amont | miroir de l'amont, 1.7.7 | 4.8.0 | jamais modifiée |
 | `projet` | `master` | documents du projet, dont ce fichier | 4.8.0 | branche par défaut du fork |
-| `shapes-1.7` | `master` | modif écrans, formes reportées de la PR 1541, correctifs, traductions françaises, compilation Windows | 4.8.0 | pré-release `v1.7.7-shapes.2` |
+| `shapes-1.7` | `master` | modif écrans, formes reportées de la PR 1541, correctifs, traductions françaises, compilation Windows | 4.8.0 | pré-release `v1.7.7-shapes.2`, plus le report du 12 octobre |
 | `feat-main-window-on-active-screen` | `dev` | modif écrans, PR amont [#1512](https://github.com/OpenBoard-org/OpenBoard/pull/1512) | 4.9.0 | en attente de revue amont |
-| `fix-qt64-colorscheme` | `dev` | compilation avec Qt 6.4, PR amont [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545) | 4.9.0 | en attente de revue amont |
+| `fix-qt64-colorscheme` | `dev` | compilation avec Qt 6.4, PR amont [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545) | 4.9.0 | approuvée le 5 octobre 2026, pas encore fusionnée |
+| `fix-copy-page-at-end` | `dev` | copie d'une page en fin de document, PR amont [#1548](https://github.com/OpenBoard-org/OpenBoard/pull/1548) | 4.9.0 | en attente de revue amont |
+| `fix-next-page-id` | `dev` | compteur d'identifiants de page, PR amont [#1549](https://github.com/OpenBoard-org/OpenBoard/pull/1549) | 4.9.0 | en attente de revue amont |
 | `test-shapes` | `dev` | PR 1541 telle quelle, avec la modif écrans et nos correctifs | 4.9.0 | sans binaire, sert à signaler les défauts à l'amont |
 
 ## Contraintes
@@ -78,6 +92,11 @@ ouvrent. Seule la 1.7.7 officielle sait reconvertir un tel document.
 L'essai du 4 octobre 2026 sur des documents réels a rendu les textes, les
 traits et les images. C'est pourquoi le projet ne publie plus de binaire
 basé sur `dev`.
+
+Le commit `0ed293f7` de la PR change le format des formes dans le SVG et
+rompt la compatibilité avec les documents antérieurs. La pré-release
+`v1.7.7-shapes.2` écrit l'ancien format, `shapes-1.7` écrit le nouveau
+depuis le 12 octobre.
 
 ## Adaptations du report sur la 1.7
 
@@ -95,8 +114,11 @@ La PR 1541 est écrite pour `dev`. Son report sur la 1.7.7 a demandé :
   dessus, la barre de la 1.7 n'ayant pas de marge libre.
 
 Ce report est à refaire quand la PR évolue. Il a été refait le 10 octobre
-2026 jusqu'au commit `e1b5bbcb` de la PR, publié dans `v1.7.7-shapes.2`.
-`test-shapes` est restée à `647a9dd3`, six commits plus tôt.
+2026 jusqu'à `e1b5bbcb`, publié dans `v1.7.7-shapes.2`, puis le 12 octobre
+jusqu'à `0ed293f7`, pas encore publié. `test-shapes` est restée à
+`647a9dd3`. La PR est depuis réduite à un seul commit (`334b4dd6`) ; le
+détail reste sur la branche `add-sankore-drawing-tool-unsquashed` de son
+auteur.
 
 Un push sur `shapes-1.7` lance deux workflows : le build Windows et les
 paquets `.deb` pour Ubuntu 24.04 et KDE neon. KDE neon se compile en
@@ -108,11 +130,11 @@ release vient de l'artefact du build de la branche, sur le même commit.
 
 ### Passer la pré-release en version normale
 
-- l'utiliser en classe sous Linux ;
-- lancer une première fois le build Windows, que personne n'a encore
-  exécuté ;
-- vérifier ce que deviennent les formes quand la 1.7.7 officielle
-  réenregistre une page qui en contient.
+- [ ] l'utiliser en classe sous Linux ;
+- [ ] lancer une première fois le build Windows, que personne n'a encore
+      exécuté ;
+- [ ] vérifier ce que deviennent les formes quand la 1.7.7 officielle
+      réenregistre une page qui en contient.
 
 ### Retours à l'amont
 
@@ -123,40 +145,56 @@ a repris dans la PR entre le 6 et le 7 octobre. Reportés sur
 plantage après un clic sans glisser, sélection et style des lignes
 corrects.
 
-- quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04) : trois sont
-  corrigées dans `466b5ebb`, celle qui vient de `dev` est dans la PR
-  [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545), sans
-  revue à ce jour ;
-- palette de style mal placée quand la barre d'outils est en bas :
-  corrigée dans `466b5ebb` ;
-- plantage à la fermeture après un clic sans glisser avec un outil de
-  forme : `466b5ebb` corrige une double destruction des formes créées
-  partiellement ;
-- interfaces d'extension SVG sans destructeur virtuel : corrigé dans
-  `466b5ebb` ;
-- fichiers de la PR absents du projet qmake : ajoutés dans `d6cc74fc` ;
-- un `!=` sur `UBItemStyle` qui ne compile qu'en C++20 : opérateur ajouté
-  dans `466b5ebb` ;
-- chaînes anglaises à corriger avant traduction : "octogon" a disparu
-  avec `4d129d51`, la casse des autres chaînes n'est pas vérifiée.
+- [ ] quatre erreurs de compilation avec Qt 6.4 (Ubuntu 24.04) : trois
+      sont corrigées dans `466b5ebb`, celle qui vient de `dev` est dans
+      la PR [#1545](https://github.com/OpenBoard-org/OpenBoard/pull/1545),
+      approuvée le 5 octobre par l'auteur de la PR 1541 et pas encore
+      fusionnée ;
+- [x] palette de style mal placée quand la barre d'outils est en bas :
+      corrigée dans `466b5ebb` ;
+- [x] plantage à la fermeture après un clic sans glisser avec un outil
+      de forme : `466b5ebb` corrige une double destruction des formes
+      créées partiellement ;
+- [x] interfaces d'extension SVG sans destructeur virtuel : corrigé dans
+      `466b5ebb` ;
+- [x] fichiers de la PR absents du projet qmake : ajoutés dans
+      `d6cc74fc` ;
+- [x] un `!=` sur `UBItemStyle` qui ne compile qu'en C++20 : opérateur
+      ajouté dans `466b5ebb` ;
+- [ ] chaînes anglaises à corriger avant traduction : "octogon" a disparu
+      avec `4d129d51`, la casse des autres chaînes n'est pas vérifiée.
 
-Défaut signalé le 9 octobre 2026 par un autre testeur, sans réponse : sur
-une ligne brisée tracée avec l'outil polygone, les cercles des points de
-départ et d'arrivée peuvent rester affichés après l'édition.
+Défaut signalé le 9 octobre 2026 par un autre testeur : sur une ligne
+brisée tracée avec l'outil polygone, les cercles des points de départ et
+d'arrivée peuvent rester affichés après l'édition. Corrigé dans la PR par
+`e100afd4`, reporté sur `shapes-1.7` le 12 octobre, pas essayé à l'écran.
 
-Défauts trouvés le 10 octobre 2026, à signaler sur la PR 1541 :
+Défauts trouvés le 10 octobre 2026, cochés une fois signalés à l'amont :
 
-- une forme dupliquée garde l'identifiant de l'original, corrigé dans
-  `shapes-1.7` (`53a8bdeb`) ;
-- `src/domain/domain.pri` : `HEADERS +=` et `SOURCES +=` sans barre de
-  continuation, à confirmer par un qmake sur la PR ;
-- palette de style plus large que le bloc des couleurs quand la palette
-  n'a que 5 couleurs, hypothèse non vérifiée sur `dev`.
+- [x] une forme dupliquée garde l'identifiant de l'original, corrigé
+      dans `shapes-1.7` (`53a8bdeb`) et toujours présent dans la PR
+      (`334b4dd6`) ;
+- [x] `src/domain/domain.pri` : `HEADERS +=` et `SOURCES +=` sans barre
+      de continuation (lignes 67 et 92 de `334b4dd6`), motif refusé par
+      qmake ;
+- [ ] palette de style plus large que le bloc des couleurs quand la
+      palette n'a que 5 couleurs, hypothèse non vérifiée sur `dev`.
+
+Défauts de `dev` (`82ea870c`) trouvés le 11 octobre 2026 après le retour
+d'un utilisateur du build expérimental 1.8 :
+
+- [x] dupliquer la dernière page ne fait rien en mode page et plante en
+      mode document : `UBDocument::copyPage` refuse un index égal au
+      nombre de pages. Correctif dans la PR 1548, pas essayé à l'écran ;
+- [x] après l'ouverture d'un document 1.7, la première page ajoutée
+      reçoit l'identifiant de la première page : `setPageId` ne met pas
+      à jour le compteur. Correctif dans la PR 1549, vérifié par un
+      essai isolé.
 
 La question du redimensionnement des formes (poignées visibles seulement
 après un second clic) est mise de côté.
 
 ### À la sortie de la 1.8 amont
 
-Réévaluer le fork. Si les PR 1541 et 1512 y sont fusionnées, il n'a plus
-rien à ajouter.
+- [ ] réévaluer le fork : si les PR 1541 et 1512 y sont fusionnées, il
+      n'a plus rien à ajouter.
